@@ -1,19 +1,8 @@
-import express, { Application, Request, Response } from 'express';
-import 'dotenv/config';
+import { createApp } from './app';
+import { startServer } from './server';
+import { ENV } from './interfaces';
 
-const app: Application = express();
-
-const port: string | number = process.env.PORT ?? 3000;
-
-app.get('/', (_: Request, res: Response): void => {
-  res.status(200).json({
-    code: 200,
-    status: 'success',
-    message: 'okay',
-    data: {},
-  });
-});
-
-app.listen(port, () => {
-  console.log(`app running on http://localhost:${port} 🚀`);
-});
+if (process.env.NODE_ENV !== ENV.TEST) {
+  const app = createApp();
+  startServer(app);
+}
