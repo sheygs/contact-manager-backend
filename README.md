@@ -18,7 +18,7 @@
 ### Rename _.env.sample_ to _.env_ and populate the placeholders
 
 ```bash
-PORT=XXXX
+PORT=XX
 NODE_ENV=development
 ```
 
@@ -40,7 +40,7 @@ NODE_ENV=development
 - Run `yarn dev` to run the services and you are good
 - Open browser and visit `http://localhost:80`
 
-#### Docker
+#### Using Docker
 
 - Install [Docker](https://www.docker.com/)
 - Run `docker-compose up -d`.
