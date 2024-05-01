@@ -1,0 +1,9 @@
+*.log
+.git
+.vscode
+.gitignore
+README.md
+node_modules
+Dockerfile
+.dockerignore
+coverage/

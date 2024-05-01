@@ -1,0 +1,33 @@
+services:
+  postgres:
+    container_name: postgres-container
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_DB=hux
+      - POSTGRES_USER=hux-admin
+      - POSTGRES_PASSWORD=admin@13
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./volumes/data:/data/db
+  # redis:
+  #   container_name: redis-container
+  #   image: redis/redis-stack-server:latest
+  #   restart: always
+  #   ports:
+  #     - '6379:6379'
+  #   command: redis-server --loglevel warning
+  #   volumes:
+  #     - ./volumes/cache:/data
+  backend:
+    container_name: api-container
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file: .env
+    ports:
+      - "80:80"
+    depends_on:
+      - postgres
+      # - redis

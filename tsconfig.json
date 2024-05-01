@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    /* Visit https://aka.ms/tsconfig to read more about this file */
+
+    "incremental": true,
+    "tsBuildInfoFile": "./build/.tsbuildinfo",
+    "target": "ESNext",
+    // "experimentalDecorators": true,
+    // "emitDecoratorMetadata": true,
+    "useDefineForClassFields": true,
+    "module": "NodeNext",
+    // "rootDir": "./",
+    "moduleResolution": "NodeNext",
+    "baseUrl": "./",
+    // "paths": {},
+
+    "allowImportingTsExtensions": false,
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "outDir": "./build",
+    "removeComments": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+
+    "strict": true,
+    "noImplicitAny": true,
+    "alwaysStrict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
+}
