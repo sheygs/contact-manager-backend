@@ -57,8 +57,11 @@ type Config = {
     ENV: string;
   };
   DB: {
-    DATABASE_DIALECT: string;
-    DATABASE_URL: string | undefined;
+    USER: string;
+    PASSWORD: string;
+    PG_PORT: string | number;
+    HOST: string;
+    DATABASE: string;
   };
 };
 

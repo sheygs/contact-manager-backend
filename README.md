@@ -2,6 +2,11 @@
 
 > API service that allows authenticated users to save contact information
 
+
+### Features
+
+
+
 ### Tech Stack
 
 - [TypeScript](https://www.typescriptlang.org/)
@@ -31,7 +36,7 @@ NODE_ENV=development
 #### Without Docker
 
 ```bash
-   $ git clone https://github.com/sheygs13/hux-assessment-backend.git
+   $ git clone https://github.com/sheygs/hux-assessment-backend.git
    $ cd hux-assessment-backend
    $ yarn
 ```

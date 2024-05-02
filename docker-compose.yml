@@ -5,8 +5,8 @@ services:
     restart: always
     environment:
       - POSTGRES_DB=hux
-      - POSTGRES_USER=hux-admin
-      - POSTGRES_PASSWORD=admin@13
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres@admin
     ports:
       - '5432:5432'
     volumes:
@@ -27,7 +27,7 @@ services:
       dockerfile: Dockerfile
     env_file: .env
     ports:
-      - '80:80'
+      - '3000:3000'
     depends_on:
       - postgres
       # - redis

@@ -1,6 +1,6 @@
 import { Server, createServer } from 'http';
 import express from 'express';
-import config from './config';
+import { config } from './config';
 import { exitLog } from './utils';
 
 const {

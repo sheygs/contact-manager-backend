@@ -2,7 +2,7 @@ import { Response as Res, Request as Req } from 'express';
 import { successResponse } from '../utils';
 import { AppResponse } from '../interfaces';
 import { OK } from 'http-status';
-import config from '../config';
+import { config } from '../config';
 
 const baseRoute = (_: Req, res: Res): void => {
   const transform = Object.entries(config.APP).map(([key, value]) => [
