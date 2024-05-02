@@ -31,11 +31,11 @@ class User extends BaseEntity {
   password!: string;
 
   @Column({
-    name: 'is_admin',
-    type: 'boolean',
-    default: false,
+    name: 'role',
+    type: 'varchar',
+    default: 'user',
   })
-  isAdmin!: boolean;
+  role!: 'user' | 'admin';
 
   @CreateDateColumn({
     name: 'created_at',

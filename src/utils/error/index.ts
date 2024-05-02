@@ -4,6 +4,8 @@ import {
   NOT_FOUND,
   BAD_REQUEST,
   FORBIDDEN,
+  UNPROCESSABLE_ENTITY,
+  CONFLICT,
 } from 'http-status/lib';
 
 export class BaseException extends Error {
@@ -35,6 +37,13 @@ export class BadRequestException extends BaseException {
   }
 }
 
+export class UnprocessableEntityException extends BaseException {
+  constructor(message: string) {
+    super(message, UNPROCESSABLE_ENTITY);
+    this.name = UnprocessableEntityException.name;
+  }
+}
+
 export class UnauthorizedException extends BaseException {
   constructor(message: string) {
     super(message, UNAUTHORIZED);
@@ -53,5 +62,12 @@ export class InternalServerException extends BaseException {
   constructor(message: string) {
     super(message, INTERNAL_SERVER_ERROR);
     this.name = InternalServerException.name;
+  }
+}
+
+export class ConflictException extends BaseException {
+  constructor(message: string) {
+    super(message, CONFLICT);
+    this.name = ConflictException.name;
   }
 }

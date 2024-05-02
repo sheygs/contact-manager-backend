@@ -15,6 +15,9 @@ export const config: Config = {
     BASE_URL: process.env.BASE_URL,
     PORT: process.env.NODE_ENV === TEST ? 8080 : process.env.PORT ?? 80,
     ENV: process.env.NODE_ENV ?? DEVELOPMENT,
+    JWT_SECRET: process.env.JWT_SECRET ?? '',
+    JWT_EXPIRES_IN: process.env.JWT_EXPIRES_IN ?? '',
+    JWT_COOKIE_EXPIRES_IN: process.env.JWT_COOKIE_EXPIRES_IN ?? '',
   },
   DB: {
     USER: process.env.PG_USER ?? 'postgres',

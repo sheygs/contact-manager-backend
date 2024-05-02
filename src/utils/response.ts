@@ -24,7 +24,7 @@ export const successResponse = <T = unknown>(
 };
 
 export const failureResponse = (
-  error: Error,
+  error: any,
   res: Res,
   code: number = BAD_REQUEST,
 ): Res => {
@@ -32,14 +32,14 @@ export const failureResponse = (
     code,
     status: STATUS.FAILURE,
     error: {
-      id: Math.floor(Math.random() * 1000000000000).toString(), // TODO
+      id: Math.floor(Math.random() * 1000000000000).toString(),
       name: error.name,
       message: error.message,
       stack: error.stack,
     },
   };
 
-  return res.status(code).json(response);
+  return res.status(code).send(response);
 };
 
 /**
