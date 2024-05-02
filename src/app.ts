@@ -4,9 +4,11 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import indexRoute from './routes';
 import { defaultErrorHandler } from './middlewares';
-import config from './config';
+import { config, connectDataSource } from './config';
 
 export const createApp = (): Application => {
+  connectDataSource();
+
   const app: Express = express();
 
   app.use(cors());
