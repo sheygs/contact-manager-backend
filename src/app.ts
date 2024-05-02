@@ -4,7 +4,8 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import indexRoute from './routes';
 import { defaultErrorHandler } from './middlewares';
-import { config, connectDataSource } from './config';
+import { config } from './config';
+import { connectDataSource } from './db';
 
 export const createApp = (): Application => {
   connectDataSource();
@@ -26,7 +27,7 @@ export const createApp = (): Application => {
   }
 
   app.use(indexRoute);
-  app.use(defaultErrorHandler);
+  defaultErrorHandler(app);
 
   return app;
 };

@@ -4,8 +4,9 @@
   "description": "API service that allows users save contact information.",
   "main": "./build/src/index.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=production node ./build/src/index.js",
-    "dev": "cross-env NODE_ENV=development nodemon --watch \"./src/**/*.ts\" --exec \"ts-node\" ./src/index.ts",
+    "start": "node ./build/src/index.js",
+    "dev": "nodemon --watch \"./src/**/*.ts\" --exec \"ts-node\" ./src/index.ts",
+    "dev:local": "nodemon --exec \"yarn clean && yarn transpile && yarn start\" --watch src --ext ts",
     "clean": "rimraf build",
     "transpile": "tsc",
     "build:image": "docker build -t hux-api .",

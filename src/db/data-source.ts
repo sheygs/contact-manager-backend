@@ -1,5 +1,5 @@
 import { DataSource } from 'typeorm';
-import { config } from './env';
+import { config } from '../config/env';
 // import { Contact, User } from '../entities';
 
 const {
