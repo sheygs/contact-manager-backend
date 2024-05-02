@@ -20,9 +20,11 @@ class UniversalModel {
     }
   }
 
-  async update(id: string, options: ObjectLiteral): Promise<void> {
+  async update(id: string, options: ObjectLiteral): Promise<any> {
     try {
-      await this.resource.update(id, options);
+      const response = await this.resource.update(id, options);
+
+      return response;
     } catch (error) {
       throw error;
     }
@@ -48,7 +50,7 @@ class UniversalModel {
 
   async remove(id: string): Promise<void> {
     try {
-      await this.resource.softDelete(id);
+      await this.resource.delete(id);
     } catch (error) {
       throw error;
     }
