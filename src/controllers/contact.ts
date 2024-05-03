@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { successResponse } from '../utils';
-import { OK, CREATED, NO_CONTENT } from 'http-status';
+import { OK, CREATED } from 'http-status';
 import { ContactService } from '../services';
 
 class ContactController {
@@ -8,15 +8,15 @@ class ContactController {
     try {
       const response = await ContactService.createContact(req);
 
-      successResponse<any>(res, CREATED, 'User Registered ✅', response);
+      successResponse<any>(res, CREATED, 'Contact created ✅', response);
     } catch (error) {
       next(error);
     }
   }
 
-  static async getContacts(_: Request, res: Response, next: NextFunction) {
+  static async getContacts(req: Request, res: Response, next: NextFunction) {
     try {
-      const response = await ContactService.getContacts();
+      const response = await ContactService.getContacts(req);
 
       successResponse<any>(res, OK, 'Contacts retrieved ✅', response);
     } catch (error) {
@@ -34,11 +34,11 @@ class ContactController {
     }
   }
 
-  static async softDeleteContact(req: Request, res: Response, next: NextFunction) {
+  static async deleteContact(req: Request, res: Response, next: NextFunction) {
     try {
-      const response = await ContactService.softDeleteContact(req.params.contact_id);
+      const response = await ContactService.deleteContact(req);
 
-      successResponse<any>(res, NO_CONTENT, 'contact deleted ✅', response);
+      successResponse<any>(res, OK, 'contact deleted ✅', response);
     } catch (error) {
       next(error);
     }

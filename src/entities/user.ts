@@ -15,6 +15,13 @@ class User extends BaseEntity {
   id!: string;
 
   @Column({
+    name: 'username',
+    type: 'varchar',
+    nullable: true,
+  })
+  username!: string;
+
+  @Column({
     name: 'email',
     type: 'varchar',
     length: 70,

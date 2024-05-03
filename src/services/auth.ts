@@ -1,10 +1,11 @@
+import { Request } from 'express';
 import { BadRequestException, ConflictException, UtilService } from '../utils';
 import { User } from '../entities';
 import UniversalModel from '../model';
 
 class AuthService {
-  static async register(request: { email: string; password: string }) {
-    const { email, password } = request;
+  static async register(request: { username: string; email: string; password: string }) {
+    const { username, email, password } = request;
 
     try {
       const existingUser = await new UniversalModel(User).findOne({ where: { email } });
@@ -15,13 +16,15 @@ class AuthService {
 
       const hashed = await UtilService.hashPassword(password);
 
-      const user = await new UniversalModel(User).insert({ email, password: hashed });
-
-      const token = UtilService.generateToken(user.id);
+      const user = await new UniversalModel(User).insert({
+        username,
+        email,
+        password: hashed,
+      });
 
       delete user.password;
 
-      return { user, token };
+      return { user };
     } catch (error) {
       throw error;
     }
@@ -53,8 +56,15 @@ class AuthService {
       throw error;
     }
   }
-  static async logOut() {
+  static async userLoggedIn(req: Request) {
     try {
+      const user = await new UniversalModel(User).findOne({
+        where: { id: req.user },
+      });
+
+      delete user.password;
+
+      return user;
     } catch (error) {
       throw error;
     }
