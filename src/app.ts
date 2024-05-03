@@ -5,7 +5,10 @@ import morgan from 'morgan';
 import indexRoute from './routes';
 import { defaultErrorHandler } from './middlewares';
 import { config } from './config';
+import swaggerUi from 'swagger-ui-express';
+import swaggerDocument from './swagger.json';
 import { connectDataSource } from './db';
+
 
 export const createApp = (): Application => {
   connectDataSource();
@@ -25,6 +28,8 @@ export const createApp = (): Application => {
   if (config.APP.ENV !== 'test') {
     app.use(morgan('dev'));
   }
+
+  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
   app.use(indexRoute);
   defaultErrorHandler(app);

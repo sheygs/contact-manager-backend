@@ -32,6 +32,7 @@ contactRouter.patch(
   '/:contact_id',
   validateRequest(contactIDSchema, RequestPath.PARAMS),
   validateRequest(updateContactSchema, RequestPath.BODY),
+  protect,
   ContactController.updateContact,
 );
 
@@ -39,7 +40,7 @@ contactRouter.delete(
   '/:contact_id',
   validateRequest(contactIDSchema, RequestPath.PARAMS),
   protect,
-  ContactController.softDeleteContact,
+  ContactController.deleteContact,
 );
 
 export default contactRouter;

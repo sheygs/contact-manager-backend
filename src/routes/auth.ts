@@ -1,13 +1,14 @@
 import { Router } from 'express';
 import { AuthController } from '../controllers';
-import { authSchema, validateRequest } from '../utils';
+import { authSchema, signInSchema, validateRequest } from '../utils';
 import { RequestPath } from '../interfaces';
+import { protect } from '../middlewares';
 
 const authRouter: Router = Router();
 
 authRouter
   .route('/signup')
-  .post(validateRequest(authSchema, RequestPath.BODY), AuthController.register);
+  .post(validateRequest(signInSchema, RequestPath.BODY), AuthController.register);
 
 authRouter.post(
   '/login',
@@ -16,5 +17,7 @@ authRouter.post(
 );
 
 authRouter.get('/logout', AuthController.logOut);
+
+authRouter.get('/me', protect, AuthController.userLoggedIn);
 
 export default authRouter;

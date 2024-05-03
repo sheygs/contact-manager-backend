@@ -88,7 +88,7 @@ type IUser = {
 
 type IUserResponse = {
   user: IUser;
-  token: string;
+  token?: string;
 };
 
 export {

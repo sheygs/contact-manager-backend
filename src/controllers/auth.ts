@@ -10,14 +10,6 @@ class AuthController {
     try {
       const response = await AuthService.register(req.body);
 
-      res.cookie('jwt', response.token, {
-        expires: new Date(
-          Date.now() + +config.APP.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000,
-        ),
-        httpOnly: true,
-        secure: req.secure || req.headers['x-forwarded-proto'] === 'https',
-      });
-
       successResponse<IUserResponse>(res, CREATED, 'User Registered ✅', response);
     } catch (error) {
       next(error);
@@ -48,6 +40,16 @@ class AuthController {
       });
 
       successResponse<{}>(res, OK, 'User logged out ✅');
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  static async userLoggedIn(req: Request, res: Response, next: NextFunction) {
+    try {
+      const response = await AuthService.userLoggedIn(req);
+
+      successResponse<any>(res, OK, 'user retrieved  ✅', response);
     } catch (error) {
       next(error);
     }

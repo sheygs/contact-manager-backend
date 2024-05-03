@@ -12,11 +12,19 @@ const protect = async (req: Req, _: Res, next: Next) => {
     try {
       token = req.headers.authorization.split(' ')[1];
 
+      if (!token) {
+        throw new UnauthorizedException('Not authorized, no token');
+      }
+
       const decoded: any = jwt.verify(token, config.APP.JWT_SECRET);
 
       const user = await new UniversalModel(User).findOne({
         where: { id: decoded._id },
       });
+
+      if (!user) {
+        throw new UnauthorizedException('Invalid authorization token');
+      }
 
       req.user = user.id;
 

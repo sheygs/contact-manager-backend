@@ -1,5 +1,5 @@
 // import { BadRequestException, ConflictException, UtilService } from '../utils';
-import { NotFoundException } from '../utils';
+import { NotFoundException, UnauthorizedException } from '../utils';
 import { Contact } from '../entities';
 import UniversalModel from '../model';
 import { Request as Req } from 'express';
@@ -17,9 +17,15 @@ class ContactService {
     }
   }
 
-  static async getContacts(): Promise<any[]> {
+  static async getContacts(req: Req): Promise<any[]> {
+    const { user } = req;
+
     try {
-      return await new UniversalModel(Contact).findAll({});
+      return await new UniversalModel(Contact).findAll({
+        where: {
+          user_id: user,
+        },
+      });
     } catch (error) {
       throw error;
     }
@@ -43,6 +49,7 @@ class ContactService {
 
   static async updateContact(req: Req): Promise<void> {
     const {
+      user,
       body,
       params: { contact_id },
     } = req;
@@ -54,6 +61,10 @@ class ContactService {
         throw new NotFoundException('contact not found');
       }
 
+      if (user.toString() !== existingContact.user_id.toString()) {
+        throw new UnauthorizedException("You can't edit other people's contacts");
+      }
+
       const updated = await new UniversalModel(Contact).update(existingContact.id, body);
 
       return updated;
@@ -62,17 +73,30 @@ class ContactService {
     }
   }
 
-  static async softDeleteContact(contact_id: string): Promise<void> {
-    try {
-      const found = await ContactService.getContactByID(contact_id);
+  static async deleteContact(req: Req): Promise<any[]> {
+    const {
+      user,
+      params: { contact_id },
+    } = req;
 
-      if (!found) {
+    try {
+      const existingContact = await ContactService.getContactByID(contact_id);
+
+      if (!existingContact) {
         throw new NotFoundException('contact not found');
       }
 
-      const contact = await new UniversalModel(Contact).remove(contact_id);
+      if (user.toString() !== existingContact.user_id.toString()) {
+        throw new UnauthorizedException("You can't delete other people's contacts");
+      }
 
-      return contact;
+      await new UniversalModel(Contact).remove(contact_id);
+
+      return await new UniversalModel(Contact).findAll({
+        where: {
+          user_id: user,
+        },
+      });
     } catch (error) {
       throw error;
     }
