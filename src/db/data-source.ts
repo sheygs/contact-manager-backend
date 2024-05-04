@@ -16,8 +16,8 @@ const dataSourceOptions: DataSourceOptions = {
   // entities: [Contact, User],
   entities: ['build/src/entities/*.js'],
   logging: config.APP.ENV === 'development',
-  synchronize: false,
+  synchronize: true,
   migrations: ['migrations/**'],
 };
 
-export const dataSource = new DataSource(dataSourceOptions);
+export const dataSource: DataSource = new DataSource(dataSourceOptions);

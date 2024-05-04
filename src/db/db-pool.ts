@@ -1,7 +1,7 @@
 import { dataSource } from './data-source';
 import { logger } from '../utils';
 
-export const connectDataSource = async () => {
+export const connectDataSource = async (): Promise<void> => {
   try {
     await dataSource.initialize();
 

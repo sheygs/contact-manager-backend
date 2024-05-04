@@ -1,4 +1,4 @@
-import { Server, createServer } from 'http';
+import { IncomingMessage, Server, ServerResponse, createServer } from 'http';
 import express from 'express';
 import { config } from './config';
 import { exitLog } from './utils';
@@ -8,7 +8,8 @@ const {
 } = config;
 
 export const startServer = (app: express.Application): Server => {
-  const httpServer = createServer(app);
+  const httpServer: Server<typeof IncomingMessage, typeof ServerResponse> =
+    createServer(app);
 
   process
     .on('SIGINT', () => exitLog(null, 'SIGINT'))

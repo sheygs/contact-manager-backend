@@ -1,8 +1,9 @@
 import HttpStatus, { OK, NOT_FOUND, BAD_REQUEST } from 'http-status/lib';
 import { Response as Res, Request as Req } from 'express';
+import { config } from '../config';
 import {
   FailureResponse,
-  STATUS,
+  Status,
   SuccessResponse,
   NotFoundResponse,
 } from '../interfaces';
@@ -15,7 +16,7 @@ export const successResponse = <T = unknown>(
 ): Res => {
   const response: SuccessResponse<T> = {
     code: code,
-    status: STATUS.SUCCESS,
+    status: Status.SUCCESS,
     message: msg,
     data: data ?? {},
   };
@@ -30,12 +31,12 @@ export const failureResponse = (
 ): Res => {
   const response: FailureResponse = {
     code,
-    status: STATUS.FAILURE,
+    status: Status.FAILURE,
     error: {
       id: Math.floor(Math.random() * 1000000000000).toString(),
       name: error.name,
       message: error.message,
-      stack: error.stack,
+      ...(config.APP.ENV === 'production' ? null : { stack: error.stack }),
     },
   };
 
@@ -52,7 +53,7 @@ export const notFoundResponse = (req: Req, res: Res): Res => {
   const notFoundError: NotFoundResponse = {
     error: {
       code: NOT_FOUND,
-      status: STATUS.FAILURE,
+      status: Status.FAILURE,
       message: HttpStatus[NOT_FOUND],
       path: `🔍 - ${req.originalUrl}`,
     },

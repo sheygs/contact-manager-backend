@@ -1,4 +1,4 @@
-enum STATUS {
+enum Status {
   SUCCESS = 'success',
   FAILURE = 'failure',
 }
@@ -17,14 +17,14 @@ type AppResponse = {
 
 interface SuccessResponse<T> {
   code: number;
-  status: STATUS;
+  status: Status;
   message: string;
   data: T | {};
 }
 
 interface FailureResponse {
   code: number;
-  status: STATUS;
+  status: Status;
   error: {
     id: string;
     name: string;
@@ -45,7 +45,7 @@ export interface ObjectLiteral {
 
 type NotFoundError = {
   code: number;
-  status: STATUS;
+  status: Status;
   message: string;
   path: string;
 };
@@ -92,7 +92,7 @@ type IUserResponse = {
 };
 
 export {
-  STATUS,
+  Status,
   AppResponse,
   SuccessResponse,
   FailureResponse,
