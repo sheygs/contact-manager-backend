@@ -47,7 +47,7 @@ JWT_COOKIE_EXPIRES_IN=x
 ```
 
 - Run `yarn` to install project dependencies
-- Run `yarn dev` to run the services and you are good
+- Run `yarn dev:local` to run the services and you are good
 - Open browser and visit `http://localhost:3000`
 
 #### Using Docker

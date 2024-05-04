@@ -28,7 +28,7 @@ class ContactController {
     try {
       const response = await ContactService.getContactByID(req.params.contact_id);
 
-      successResponse<any>(res, OK, 'contact retrieved ✅', response);
+      successResponse<any>(res, OK, 'Contact retrieved ✅', response);
     } catch (error) {
       next(error);
     }
@@ -38,7 +38,7 @@ class ContactController {
     try {
       const response = await ContactService.deleteContact(req);
 
-      successResponse<any>(res, OK, 'contact deleted ✅', response);
+      successResponse<any>(res, OK, 'Contact deleted ✅', response);
     } catch (error) {
       next(error);
     }
@@ -48,7 +48,7 @@ class ContactController {
     try {
       const response = await ContactService.updateContact(req);
 
-      successResponse<any>(res, OK, 'contact updated ✅', response);
+      successResponse<any>(res, OK, 'Contact updated ✅', response);
     } catch (error) {
       next(error);
     }

@@ -11,15 +11,6 @@ services:
       - '5432:5432'
     volumes:
       - ./volumes/data:/data/db
-  # redis:
-  #   container_name: redis-container
-  #   image: redis/redis-stack-server:latest
-  #   restart: always
-  #   ports:
-  #     - '6379:6379'
-  #   command: redis-server --loglevel warning
-  #   volumes:
-  #     - ./volumes/cache:/data
   api:
     container_name: api-container
     build:
@@ -30,4 +21,4 @@ services:
       - '3000:3000'
     depends_on:
       - postgres
-      # - redis
+
