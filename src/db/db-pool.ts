@@ -7,7 +7,7 @@ export const connectDataSource = async () => {
 
     logger.info('Data source connected ✅');
   } catch (error) {
-    logger.info(`Data source connection failed ❌ - ${JSON.stringify(error)}`);
+    logger.error(`Data source connection failed ❌ - ${JSON.stringify(error)}`);
 
     process.exit(1);
   }

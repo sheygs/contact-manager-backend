@@ -31,3 +31,12 @@ export const updateContactSchema = Joi.object({
   last_name: Joi.string().optional(),
   phone_number: Joi.string().min(11).optional(),
 });
+
+export const bearerTokenSchema: Joi.ObjectSchema<any> = Joi.object()
+  .keys({
+    authorization: Joi.string()
+      .regex(/^Bearer [A-Za-z0-9-_=]+\.[A-Za-z0-9-_=]+\.?[A-Za-z0-9-_.+/=]*$/)
+      .required()
+      .error(new Error('Invalid bearer token.')),
+  })
+  .unknown(true);

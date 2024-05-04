@@ -26,6 +26,7 @@ class User extends BaseEntity {
     type: 'varchar',
     length: 70,
     nullable: false,
+    unique: true,
   })
   email!: string;
 

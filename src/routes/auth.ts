@@ -2,7 +2,7 @@ import { Router } from 'express';
 import { AuthController } from '../controllers';
 import { authSchema, signInSchema, validateRequest } from '../utils';
 import { RequestPath } from '../interfaces';
-import { protect } from '../middlewares';
+import { verifyAuthToken } from '../middlewares';
 
 const authRouter: Router = Router();
 
@@ -18,6 +18,6 @@ authRouter.post(
 
 authRouter.get('/logout', AuthController.logOut);
 
-authRouter.get('/me', protect, AuthController.userLoggedIn);
+authRouter.get('/me', verifyAuthToken, AuthController.userLoggedIn);
 
 export default authRouter;
