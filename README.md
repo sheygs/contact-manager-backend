@@ -2,10 +2,7 @@
 
 > API service that allows authenticated users to save contact information
 
-
 ### Features
-
-
 
 ### Tech Stack
 
@@ -23,8 +20,16 @@
 ### Rename _.env.sample_ to _.env_ and populate the placeholders
 
 ```bash
-PORT=XX
+PORT=XXXX
 NODE_ENV=development
+PORT=3000
+PG_PASSWORD=xxxx
+PG_PORT=XXXX
+PG_HOST=localhost
+PG_DATABASE=XXXX
+JWT_SECRET=XXXX
+JWT_EXPIRES_IN=xd
+JWT_COOKIE_EXPIRES_IN=x
 ```
 
 ### Postman Documentation
@@ -43,13 +48,13 @@ NODE_ENV=development
 
 - Run `yarn` to install project dependencies
 - Run `yarn dev` to run the services and you are good
-- Open browser and visit `http://localhost:80`
+- Open browser and visit `http://localhost:3000`
 
 #### Using Docker
 
 - Install [Docker](https://www.docker.com/)
 - Run `docker-compose up -d`.
-- Open browser and visit `http://localhost:80`
+- Open browser and visit `http://localhost:3000`
 
 ### Production Packaging
 
@@ -64,3 +69,13 @@ docker build -t ${IMAGETAG} -f Dockerfile .
 ```bash
    $ npm test
 ```
+
+### Postman Documentation
+
+- Please see `/postman_docs` directory on the root OR
+- Navigate to `http://localhost:3000/api-docs` on your computer to view the openapi documentation.
+
+#### Improvement Points
+
+- Implement Caching for frequently accessed data
+- Implement pagination for large data sets

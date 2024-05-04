@@ -1,109 +1,1440 @@
 {
-  "swagger": "2.0",
+  "openapi": "3.0.0",
   "info": {
-    "title": "Hux-backend-assessment",
-    "description": "API service that allows users save contact information.",
-    "termsOfService": "http://swagger.io/terms/",
-    "contact": {
-      "name": "Olusegun Ekoh",
-      "email": "segun.ekoh@gmail.com"
-    },
-    "license": {
-      "name": "MIT",
-      "url": "https://opensource.org/licenses/MIT"
-    },
+    "title": "Contact-Manager",
+    "description": "This is a collection that houses the `Contacts` & `Auth` resource for this application.",
     "version": "1.0.0"
   },
-  "host": "localhost:3000",
-  "basePath": "/api/v1",
-  "tags": [
+  "servers": [
     {
-      "name": "hux-backend-assessment",
-      "description": "API service that allows users save contact information."
+      "url": "http://{{base_url}}"
     }
   ],
-  "schemes": ["https", "http"],
+  "tags": [
+    {
+      "name": "Contacts",
+      "description": "This collection houses all endpoints for the `contacts` resource"
+    },
+    {
+      "name": "Auth",
+      "description": "This collection houses all endpoints for the `auth` resource."
+    }
+  ],
   "paths": {
-    "/urls/encode": {
+    "/api/v1/contacts": {
       "post": {
-        "tags": ["Short Links"],
-        "summary": "Encode a long url",
-        "description": "",
-        "operationId": "EncodeLongUrl",
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "name": "longUrl",
-            "in": "body",
-            "description": "long url to encode to short link",
-            "required": true,
-            "type": "string"
+        "tags": ["Contacts"],
+        "summary": "Create Contact",
+        "description": "This endpoint creates a new contact entry for a specific `user`.\n\nIt accepts fields `first_name`, `last_name` & `phone_number` as request bodies.\n\nIt returns a status code `201` for a successful request or a status of `failure` for an unsuccessful request.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "first_name": "Makanaju",
+                  "last_name": "Kadiri",
+                  "phone_number": "08036879279"
+                }
+              }
+            }
           }
-        ],
+        },
         "responses": {
           "201": {
-            "description": "URL link shortened successfully",
-            "schema": {
-              "type": "object",
-              "items": {
-                "$ref": "#"
+            "description": "Created",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "type": "string",
+                  "example": "*"
+                }
+              },
+              "Content-Security-Policy": {
+                "schema": {
+                  "type": "string",
+                  "example": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                }
+              },
+              "Cross-Origin-Opener-Policy": {
+                "schema": {
+                  "type": "string",
+                  "example": "same-origin"
+                }
+              },
+              "Cross-Origin-Resource-Policy": {
+                "schema": {
+                  "type": "string",
+                  "example": "same-origin"
+                }
+              },
+              "Origin-Agent-Cluster": {
+                "schema": {
+                  "type": "string",
+                  "example": "?1"
+                }
+              },
+              "Referrer-Policy": {
+                "schema": {
+                  "type": "string",
+                  "example": "no-referrer"
+                }
+              },
+              "Strict-Transport-Security": {
+                "schema": {
+                  "type": "string",
+                  "example": "max-age=15552000; includeSubDomains"
+                }
+              },
+              "X-Content-Type-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "nosniff"
+                }
+              },
+              "X-DNS-Prefetch-Control": {
+                "schema": {
+                  "type": "string",
+                  "example": "off"
+                }
+              },
+              "X-Download-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "noopen"
+                }
+              },
+              "X-Frame-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "SAMEORIGIN"
+                }
+              },
+              "X-Permitted-Cross-Domain-Policies": {
+                "schema": {
+                  "type": "string",
+                  "example": "none"
+                }
+              },
+              "X-XSS-Protection": {
+                "schema": {
+                  "type": "integer",
+                  "example": "0"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json; charset=utf-8"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer",
+                  "example": "312"
+                }
+              },
+              "ETag": {
+                "schema": {
+                  "type": "string",
+                  "example": "W/\"138-1Ch+28qPpYE1uVbUiOfia9FyXNc\""
+                }
+              },
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Sat, 04 May 2024 01:27:26 GMT"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "keep-alive"
+                }
+              },
+              "Keep-Alive": {
+                "schema": {
+                  "type": "string",
+                  "example": "timeout=5"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "code": 201,
+                  "status": "success",
+                  "message": "Contact created ✅",
+                  "data": {
+                    "id": "71e3de1a-a24c-46a9-a6e0-37c98a5ab1b2",
+                    "user_id": "56d530b4-8d46-42fa-b0cb-e4f046688782",
+                    "first_name": "Dele",
+                    "last_name": "Ali",
+                    "phone_number": "08014563578",
+                    "created_at": "2024-05-04T00:27:26.291Z",
+                    "updated_at": "2024-05-04T00:27:26.291Z"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": ["Contacts"],
+        "summary": "Spool Contacts",
+        "description": "This endpoint returns all contacts entries for a specific `user`.\n\nIt returns a status code `200` for a successful request or a status of `failure` for an unsuccessful request.",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "type": "string",
+                  "example": "*"
+                }
+              },
+              "Content-Security-Policy": {
+                "schema": {
+                  "type": "string",
+                  "example": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                }
+              },
+              "Cross-Origin-Opener-Policy": {
+                "schema": {
+                  "type": "string",
+                  "example": "same-origin"
+                }
+              },
+              "Cross-Origin-Resource-Policy": {
+                "schema": {
+                  "type": "string",
+                  "example": "same-origin"
+                }
+              },
+              "Origin-Agent-Cluster": {
+                "schema": {
+                  "type": "string",
+                  "example": "?1"
+                }
+              },
+              "Referrer-Policy": {
+                "schema": {
+                  "type": "string",
+                  "example": "no-referrer"
+                }
+              },
+              "Strict-Transport-Security": {
+                "schema": {
+                  "type": "string",
+                  "example": "max-age=15552000; includeSubDomains"
+                }
+              },
+              "X-Content-Type-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "nosniff"
+                }
+              },
+              "X-DNS-Prefetch-Control": {
+                "schema": {
+                  "type": "string",
+                  "example": "off"
+                }
+              },
+              "X-Download-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "noopen"
+                }
+              },
+              "X-Frame-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "SAMEORIGIN"
+                }
+              },
+              "X-Permitted-Cross-Domain-Policies": {
+                "schema": {
+                  "type": "string",
+                  "example": "none"
+                }
+              },
+              "X-XSS-Protection": {
+                "schema": {
+                  "type": "integer",
+                  "example": "0"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json; charset=utf-8"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer",
+                  "example": "317"
+                }
+              },
+              "ETag": {
+                "schema": {
+                  "type": "string",
+                  "example": "W/\"13d-CgLpFVOoVlDoxmKw56y41PlX4dY\""
+                }
+              },
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Sat, 04 May 2024 01:27:34 GMT"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "keep-alive"
+                }
+              },
+              "Keep-Alive": {
+                "schema": {
+                  "type": "string",
+                  "example": "timeout=5"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "code": 200,
+                  "status": "success",
+                  "message": "Contacts retrieved ✅",
+                  "data": [
+                    {
+                      "id": "71e3de1a-a24c-46a9-a6e0-37c98a5ab1b2",
+                      "user_id": "56d530b4-8d46-42fa-b0cb-e4f046688782",
+                      "first_name": "Dele",
+                      "last_name": "Ali",
+                      "phone_number": "08014563578",
+                      "created_at": "2024-05-04T00:27:26.291Z",
+                      "updated_at": "2024-05-04T00:27:26.291Z"
+                    }
+                  ]
+                }
               }
             }
           }
         }
       }
     },
-    "/urls/decode": {
+    "/v1/contacts/{contact_id}": {
       "get": {
-        "tags": ["Short Links"],
-        "summary": "Decode a short url link",
-        "description": "",
-        "operationId": "DecodeShortUrl",
+        "tags": ["Contacts"],
+        "summary": "Retrieve Contact",
+        "description": "This endpoint retrieves a specific contact entry.\n\nIt returns a status code `200` for a successful request or a status of `failure` for an unsuccessful request.",
         "parameters": [
           {
-            "name": "shortUrl",
-            "in": "query",
-            "description": "short url to decode to original Url",
+            "name": "contact_id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
             "required": true,
-            "type": "string"
+            "example": "71e3de1a-a24c-46a9-a6e0-37c98a5ab1b2"
           }
         ],
-        "produces": ["application/json"],
         "responses": {
           "200": {
-            "description": "Short Url decoded",
-            "schema": {
-              "type": "object",
-              "items": {
-                "$ref": "#"
+            "description": "OK",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "type": "string",
+                  "example": "*"
+                }
+              },
+              "Content-Security-Policy": {
+                "schema": {
+                  "type": "string",
+                  "example": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                }
+              },
+              "Cross-Origin-Opener-Policy": {
+                "schema": {
+                  "type": "string",
+                  "example": "same-origin"
+                }
+              },
+              "Cross-Origin-Resource-Policy": {
+                "schema": {
+                  "type": "string",
+                  "example": "same-origin"
+                }
+              },
+              "Origin-Agent-Cluster": {
+                "schema": {
+                  "type": "string",
+                  "example": "?1"
+                }
+              },
+              "Referrer-Policy": {
+                "schema": {
+                  "type": "string",
+                  "example": "no-referrer"
+                }
+              },
+              "Strict-Transport-Security": {
+                "schema": {
+                  "type": "string",
+                  "example": "max-age=15552000; includeSubDomains"
+                }
+              },
+              "X-Content-Type-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "nosniff"
+                }
+              },
+              "X-DNS-Prefetch-Control": {
+                "schema": {
+                  "type": "string",
+                  "example": "off"
+                }
+              },
+              "X-Download-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "noopen"
+                }
+              },
+              "X-Frame-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "SAMEORIGIN"
+                }
+              },
+              "X-Permitted-Cross-Domain-Policies": {
+                "schema": {
+                  "type": "string",
+                  "example": "none"
+                }
+              },
+              "X-XSS-Protection": {
+                "schema": {
+                  "type": "integer",
+                  "example": "0"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json; charset=utf-8"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer",
+                  "example": "314"
+                }
+              },
+              "ETag": {
+                "schema": {
+                  "type": "string",
+                  "example": "W/\"13a-REPbUjzpv73KDiFH4KWBH/WBNdg\""
+                }
+              },
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Sat, 04 May 2024 01:29:52 GMT"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "keep-alive"
+                }
+              },
+              "Keep-Alive": {
+                "schema": {
+                  "type": "string",
+                  "example": "timeout=5"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "code": 200,
+                  "status": "success",
+                  "message": "contact retrieved ✅",
+                  "data": {
+                    "id": "71e3de1a-a24c-46a9-a6e0-37c98a5ab1b2",
+                    "user_id": "56d530b4-8d46-42fa-b0cb-e4f046688782",
+                    "first_name": "Dele",
+                    "last_name": "Ali",
+                    "phone_number": "08014563578",
+                    "created_at": "2024-05-04T00:27:26.291Z",
+                    "updated_at": "2024-05-04T00:27:26.291Z"
+                  }
+                }
               }
             }
           }
         }
       }
     },
-    "/urls/statistic": {
-      "get": {
-        "tags": ["Short Links"],
-        "summary": "Get Statistics of Short Link Path",
-        "description": "",
-        "operationId": "GetShortLinkStats",
+    "/api/v1/contacts/{contact_id}": {
+      "delete": {
+        "tags": ["Contacts"],
+        "summary": "Delete Contact",
+        "description": "This endpoint deletes a contact entry for a specific `user`\n\nIt returns a status code `204` for a successful request or a status of `failure` for an unsuccessful request.",
         "parameters": [
           {
-            "name": "urlPath",
-            "in": "query",
-            "description": "get statistics of the short link url path",
+            "name": "contact_id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
             "required": true,
-            "type": "string"
+            "example": "71e3de1a-a24c-46a9-a6e0-37c98a5ab1b2"
           }
         ],
-        "produces": ["application/json"],
         "responses": {
           "200": {
-            "description": "Short link statistics report",
+            "description": "OK",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "type": "string",
+                  "example": "*"
+                }
+              },
+              "Content-Security-Policy": {
+                "schema": {
+                  "type": "string",
+                  "example": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                }
+              },
+              "Cross-Origin-Opener-Policy": {
+                "schema": {
+                  "type": "string",
+                  "example": "same-origin"
+                }
+              },
+              "Cross-Origin-Resource-Policy": {
+                "schema": {
+                  "type": "string",
+                  "example": "same-origin"
+                }
+              },
+              "Origin-Agent-Cluster": {
+                "schema": {
+                  "type": "string",
+                  "example": "?1"
+                }
+              },
+              "Referrer-Policy": {
+                "schema": {
+                  "type": "string",
+                  "example": "no-referrer"
+                }
+              },
+              "Strict-Transport-Security": {
+                "schema": {
+                  "type": "string",
+                  "example": "max-age=15552000; includeSubDomains"
+                }
+              },
+              "X-Content-Type-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "nosniff"
+                }
+              },
+              "X-DNS-Prefetch-Control": {
+                "schema": {
+                  "type": "string",
+                  "example": "off"
+                }
+              },
+              "X-Download-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "noopen"
+                }
+              },
+              "X-Frame-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "SAMEORIGIN"
+                }
+              },
+              "X-Permitted-Cross-Domain-Policies": {
+                "schema": {
+                  "type": "string",
+                  "example": "none"
+                }
+              },
+              "X-XSS-Protection": {
+                "schema": {
+                  "type": "integer",
+                  "example": "0"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json; charset=utf-8"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer",
+                  "example": "73"
+                }
+              },
+              "ETag": {
+                "schema": {
+                  "type": "string",
+                  "example": "W/\"49-co5ncFaDhyGzt2ZNfQbym5k4pIY\""
+                }
+              },
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Sat, 04 May 2024 01:31:34 GMT"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "keep-alive"
+                }
+              },
+              "Keep-Alive": {
+                "schema": {
+                  "type": "string",
+                  "example": "timeout=5"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "code": 200,
+                  "status": "success",
+                  "message": "contact deleted ✅",
+                  "data": []
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": ["Contacts"],
+        "summary": "Update Contact",
+        "description": "This endpoint updates a contact entry for a specific `user`\n\nIt returns a status code `200` for a successful request or a status of `failure` for an unsuccessful request.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "first_name": "MayowaKadid",
+                  "phone_number": "080377123727"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "contact_id",
+            "in": "path",
             "schema": {
-              "type": "object",
-              "$ref": "#"
+              "type": "string"
+            },
+            "required": true,
+            "example": "71e3de1a-a24c-46a9-a6e0-37c98a5ab1b2"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "type": "string",
+                  "example": "*"
+                }
+              },
+              "Content-Security-Policy": {
+                "schema": {
+                  "type": "string",
+                  "example": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                }
+              },
+              "Cross-Origin-Opener-Policy": {
+                "schema": {
+                  "type": "string",
+                  "example": "same-origin"
+                }
+              },
+              "Cross-Origin-Resource-Policy": {
+                "schema": {
+                  "type": "string",
+                  "example": "same-origin"
+                }
+              },
+              "Origin-Agent-Cluster": {
+                "schema": {
+                  "type": "string",
+                  "example": "?1"
+                }
+              },
+              "Referrer-Policy": {
+                "schema": {
+                  "type": "string",
+                  "example": "no-referrer"
+                }
+              },
+              "Strict-Transport-Security": {
+                "schema": {
+                  "type": "string",
+                  "example": "max-age=15552000; includeSubDomains"
+                }
+              },
+              "X-Content-Type-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "nosniff"
+                }
+              },
+              "X-DNS-Prefetch-Control": {
+                "schema": {
+                  "type": "string",
+                  "example": "off"
+                }
+              },
+              "X-Download-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "noopen"
+                }
+              },
+              "X-Frame-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "SAMEORIGIN"
+                }
+              },
+              "X-Permitted-Cross-Domain-Policies": {
+                "schema": {
+                  "type": "string",
+                  "example": "none"
+                }
+              },
+              "X-XSS-Protection": {
+                "schema": {
+                  "type": "integer",
+                  "example": "0"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json; charset=utf-8"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer",
+                  "example": "113"
+                }
+              },
+              "ETag": {
+                "schema": {
+                  "type": "string",
+                  "example": "W/\"71-8C/odjz8Us8ryH8iJquB79jVhpI\""
+                }
+              },
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Sat, 04 May 2024 01:30:50 GMT"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "keep-alive"
+                }
+              },
+              "Keep-Alive": {
+                "schema": {
+                  "type": "string",
+                  "example": "timeout=5"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "code": 200,
+                  "status": "success",
+                  "message": "contact updated ✅",
+                  "data": {
+                    "generatedMaps": [],
+                    "raw": [],
+                    "affected": 1
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth/signup": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "Register",
+        "description": "This endpoint registers/signs up a `user.`\n\nIt returns a status code `201` for a successful request or a status of `failure` for an unsuccessful request.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "email": "kola.ekoh@gmail.com",
+                  "password": "Kkolz123"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "type": "string",
+                  "example": "*"
+                }
+              },
+              "Content-Security-Policy": {
+                "schema": {
+                  "type": "string",
+                  "example": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                }
+              },
+              "Cross-Origin-Opener-Policy": {
+                "schema": {
+                  "type": "string",
+                  "example": "same-origin"
+                }
+              },
+              "Cross-Origin-Resource-Policy": {
+                "schema": {
+                  "type": "string",
+                  "example": "same-origin"
+                }
+              },
+              "Origin-Agent-Cluster": {
+                "schema": {
+                  "type": "string",
+                  "example": "?1"
+                }
+              },
+              "Referrer-Policy": {
+                "schema": {
+                  "type": "string",
+                  "example": "no-referrer"
+                }
+              },
+              "Strict-Transport-Security": {
+                "schema": {
+                  "type": "string",
+                  "example": "max-age=15552000; includeSubDomains"
+                }
+              },
+              "X-Content-Type-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "nosniff"
+                }
+              },
+              "X-DNS-Prefetch-Control": {
+                "schema": {
+                  "type": "string",
+                  "example": "off"
+                }
+              },
+              "X-Download-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "noopen"
+                }
+              },
+              "X-Frame-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "SAMEORIGIN"
+                }
+              },
+              "X-Permitted-Cross-Domain-Policies": {
+                "schema": {
+                  "type": "string",
+                  "example": "none"
+                }
+              },
+              "X-XSS-Protection": {
+                "schema": {
+                  "type": "integer",
+                  "example": "0"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json; charset=utf-8"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer",
+                  "example": "269"
+                }
+              },
+              "ETag": {
+                "schema": {
+                  "type": "string",
+                  "example": "W/\"10d-ZxebTxFmeTecYnCITsPbNGgW5Co\""
+                }
+              },
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Sat, 04 May 2024 01:24:07 GMT"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "keep-alive"
+                }
+              },
+              "Keep-Alive": {
+                "schema": {
+                  "type": "string",
+                  "example": "timeout=5"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "code": 201,
+                  "status": "success",
+                  "message": "User Registered ✅",
+                  "data": {
+                    "user": {
+                      "id": "56d530b4-8d46-42fa-b0cb-e4f046688782",
+                      "username": "mvck",
+                      "email": "mark.kadiri@gmail.com",
+                      "role": "user",
+                      "created_at": "2024-05-04T00:24:07.185Z",
+                      "updated_at": "2024-05-04T00:24:07.185Z"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth/login": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "Login",
+        "description": "This endpoint signs in a `user.`\n\nIt returns a status code `200` for a successful request or a status of `failure` for an unsuccessful request.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "email": "kola.ekoh@gmail.com",
+                  "password": "Kkolz123"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "type": "string",
+                  "example": "*"
+                }
+              },
+              "Content-Security-Policy": {
+                "schema": {
+                  "type": "string",
+                  "example": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                }
+              },
+              "Cross-Origin-Opener-Policy": {
+                "schema": {
+                  "type": "string",
+                  "example": "same-origin"
+                }
+              },
+              "Cross-Origin-Resource-Policy": {
+                "schema": {
+                  "type": "string",
+                  "example": "same-origin"
+                }
+              },
+              "Origin-Agent-Cluster": {
+                "schema": {
+                  "type": "string",
+                  "example": "?1"
+                }
+              },
+              "Referrer-Policy": {
+                "schema": {
+                  "type": "string",
+                  "example": "no-referrer"
+                }
+              },
+              "Strict-Transport-Security": {
+                "schema": {
+                  "type": "string",
+                  "example": "max-age=15552000; includeSubDomains"
+                }
+              },
+              "X-Content-Type-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "nosniff"
+                }
+              },
+              "X-DNS-Prefetch-Control": {
+                "schema": {
+                  "type": "string",
+                  "example": "off"
+                }
+              },
+              "X-Download-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "noopen"
+                }
+              },
+              "X-Frame-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "SAMEORIGIN"
+                }
+              },
+              "X-Permitted-Cross-Domain-Policies": {
+                "schema": {
+                  "type": "string",
+                  "example": "none"
+                }
+              },
+              "X-XSS-Protection": {
+                "schema": {
+                  "type": "integer",
+                  "example": "0"
+                }
+              },
+              "Set-Cookie": {
+                "schema": {
+                  "type": "string",
+                  "example": "jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1NmQ1MzBiNC04ZDQ2LTQyZmEtYjBjYi1lNGYwNDY2ODg3ODIiLCJlbWFpbCI6Im1hcmsua2FkaXJpQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzE0Nzg1ODg3LCJleHAiOjE3MjI1NjE4ODd9.fwHA0dR-OteDqGyD_6EegfbWh02YVIq9koz3bWtZwEI; Path=/; Expires=Fri, 02 Aug 2024 01:24:47 GMT; HttpOnly"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json; charset=utf-8"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer",
+                  "example": "528"
+                }
+              },
+              "ETag": {
+                "schema": {
+                  "type": "string",
+                  "example": "W/\"210-Tz0Qm7m4+fl5mhzL6umjJDxa3Rc\""
+                }
+              },
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Sat, 04 May 2024 01:24:47 GMT"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "keep-alive"
+                }
+              },
+              "Keep-Alive": {
+                "schema": {
+                  "type": "string",
+                  "example": "timeout=5"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "code": 200,
+                  "status": "success",
+                  "message": "User logged in ✅",
+                  "data": {
+                    "user": {
+                      "id": "56d530b4-8d46-42fa-b0cb-e4f046688782",
+                      "username": "mvck",
+                      "email": "mark.kadiri@gmail.com",
+                      "role": "user",
+                      "created_at": "2024-05-04T00:24:07.185Z",
+                      "updated_at": "2024-05-04T00:24:07.185Z"
+                    },
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1NmQ1MzBiNC04ZDQ2LTQyZmEtYjBjYi1lNGYwNDY2ODg3ODIiLCJlbWFpbCI6Im1hcmsua2FkaXJpQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzE0Nzg1ODg3LCJleHAiOjE3MjI1NjE4ODd9.fwHA0dR-OteDqGyD_6EegfbWh02YVIq9koz3bWtZwEI"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth/logout": {
+      "get": {
+        "tags": ["Auth"],
+        "summary": "LogOut",
+        "description": "This endpoint logs out an authenticated `user.`\n\nIt returns a status code `200` for a successful request or a status of `failure` for an unsuccessful request.",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "type": "string",
+                  "example": "*"
+                }
+              },
+              "Content-Security-Policy": {
+                "schema": {
+                  "type": "string",
+                  "example": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                }
+              },
+              "Cross-Origin-Opener-Policy": {
+                "schema": {
+                  "type": "string",
+                  "example": "same-origin"
+                }
+              },
+              "Cross-Origin-Resource-Policy": {
+                "schema": {
+                  "type": "string",
+                  "example": "same-origin"
+                }
+              },
+              "Origin-Agent-Cluster": {
+                "schema": {
+                  "type": "string",
+                  "example": "?1"
+                }
+              },
+              "Referrer-Policy": {
+                "schema": {
+                  "type": "string",
+                  "example": "no-referrer"
+                }
+              },
+              "Strict-Transport-Security": {
+                "schema": {
+                  "type": "string",
+                  "example": "max-age=15552000; includeSubDomains"
+                }
+              },
+              "X-Content-Type-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "nosniff"
+                }
+              },
+              "X-DNS-Prefetch-Control": {
+                "schema": {
+                  "type": "string",
+                  "example": "off"
+                }
+              },
+              "X-Download-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "noopen"
+                }
+              },
+              "X-Frame-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "SAMEORIGIN"
+                }
+              },
+              "X-Permitted-Cross-Domain-Policies": {
+                "schema": {
+                  "type": "string",
+                  "example": "none"
+                }
+              },
+              "X-XSS-Protection": {
+                "schema": {
+                  "type": "integer",
+                  "example": "0"
+                }
+              },
+              "Set-Cookie": {
+                "schema": {
+                  "type": "string",
+                  "example": "jwt=loggedout; Path=/; Expires=Sat, 04 May 2024 01:26:12 GMT; HttpOnly"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json; charset=utf-8"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer",
+                  "example": "73"
+                }
+              },
+              "ETag": {
+                "schema": {
+                  "type": "string",
+                  "example": "W/\"49-jXuyMNrILhMI0oO0wD74tfLCVR8\""
+                }
+              },
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Sat, 04 May 2024 01:26:02 GMT"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "keep-alive"
+                }
+              },
+              "Keep-Alive": {
+                "schema": {
+                  "type": "string",
+                  "example": "timeout=5"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "code": 200,
+                  "status": "success",
+                  "message": "User logged out ✅",
+                  "data": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth/me": {
+      "get": {
+        "tags": ["Auth"],
+        "summary": "Current LoggedIn",
+        "description": "This endpoint retrieves the currently logged in `user.`\n\nIt returns a status code `200` for a successful request or a status of `failure` for an unsuccessful request.",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "type": "string",
+                  "example": "*"
+                }
+              },
+              "Content-Security-Policy": {
+                "schema": {
+                  "type": "string",
+                  "example": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+                }
+              },
+              "Cross-Origin-Opener-Policy": {
+                "schema": {
+                  "type": "string",
+                  "example": "same-origin"
+                }
+              },
+              "Cross-Origin-Resource-Policy": {
+                "schema": {
+                  "type": "string",
+                  "example": "same-origin"
+                }
+              },
+              "Origin-Agent-Cluster": {
+                "schema": {
+                  "type": "string",
+                  "example": "?1"
+                }
+              },
+              "Referrer-Policy": {
+                "schema": {
+                  "type": "string",
+                  "example": "no-referrer"
+                }
+              },
+              "Strict-Transport-Security": {
+                "schema": {
+                  "type": "string",
+                  "example": "max-age=15552000; includeSubDomains"
+                }
+              },
+              "X-Content-Type-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "nosniff"
+                }
+              },
+              "X-DNS-Prefetch-Control": {
+                "schema": {
+                  "type": "string",
+                  "example": "off"
+                }
+              },
+              "X-Download-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "noopen"
+                }
+              },
+              "X-Frame-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "SAMEORIGIN"
+                }
+              },
+              "X-Permitted-Cross-Domain-Policies": {
+                "schema": {
+                  "type": "string",
+                  "example": "none"
+                }
+              },
+              "X-XSS-Protection": {
+                "schema": {
+                  "type": "integer",
+                  "example": "0"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json; charset=utf-8"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer",
+                  "example": "260"
+                }
+              },
+              "ETag": {
+                "schema": {
+                  "type": "string",
+                  "example": "W/\"104-s4Fu/EGS0cpGrGhaCPCP+nlg6dw\""
+                }
+              },
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Sat, 04 May 2024 01:25:29 GMT"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "keep-alive"
+                }
+              },
+              "Keep-Alive": {
+                "schema": {
+                  "type": "string",
+                  "example": "timeout=5"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "code": 200,
+                  "status": "success",
+                  "message": "user retrieved  ✅",
+                  "data": {
+                    "id": "56d530b4-8d46-42fa-b0cb-e4f046688782",
+                    "username": "mvck",
+                    "email": "mark.kadiri@gmail.com",
+                    "role": "user",
+                    "created_at": "2024-05-04T00:24:07.185Z",
+                    "updated_at": "2024-05-04T00:24:07.185Z"
+                  }
+                }
+              }
             }
           }
         }
