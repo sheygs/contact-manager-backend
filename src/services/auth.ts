@@ -38,13 +38,13 @@ class AuthService {
       });
 
       if (!user) {
-        throw new BadRequestException('Invalid login credentials');
+        throw new BadRequestException('Invalid email account');
       }
 
-      const isValidPassword = UtilService.comparePassword(password, user.password);
+      const isValidPassword = await UtilService.comparePassword(password, user.password);
 
       if (!isValidPassword) {
-        throw new BadRequestException('Invalid login credentials');
+        throw new BadRequestException('Invalid password credential');
       }
 
       delete user.password;
