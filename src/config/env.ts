@@ -1,8 +1,8 @@
-import pkg from '../../package.json';
 import 'dotenv/config';
+import pkg from '../../package.json';
 import { Env, Config } from '../interfaces';
 
-const { TEST, DEVELOPMENT } = Env;
+const { DEVELOPMENT } = Env;
 
 export const config: Config = {
   APP: {
@@ -13,7 +13,7 @@ export const config: Config = {
     AUTHORS: pkg.author,
     HOST: process.env.APP_HOST,
     BASE_URL: process.env.BASE_URL,
-    PORT: process.env.NODE_ENV === TEST ? 8080 : process.env.PORT ?? 80,
+    PORT: process.env.PORT ?? 4000,
     ENV: process.env.NODE_ENV ?? DEVELOPMENT,
     JWT_SECRET: process.env.JWT_SECRET ?? '',
     JWT_EXPIRES_IN: process.env.JWT_EXPIRES_IN ?? '',

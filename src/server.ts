@@ -1,3 +1,4 @@
+import os from 'os';
 import { Server, createServer } from 'http';
 import express from 'express';
 import { config } from './config';
@@ -21,6 +22,8 @@ export const startServer = (app: express.Application): Server => {
   return httpServer.listen({ port: PORT }, (): void => {
     process.stdout.write(`⚙️ Env: ${ENV}\n`);
     process.stdout.write(`⏱ Started on: ${Date.now()}\n`);
-    process.stdout.write(`🚀 hux-api server ready at http://localhost:${PORT}\n`);
+    process.stdout.write(
+      `🚀 hux-api server ready at http://${os.hostname()}:${PORT}\n`,
+    );
   });
 };

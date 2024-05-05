@@ -17,28 +17,22 @@
 - [Postman](https://www.postman.com/downloads/)
 - [Git](https://git-scm.com/downloads)
 
-### Rename _.env.sample_ to _.env_ and populate keys
+### Rename`.env.dev` to `.env` and populate variables
 
 ```bash
-PORT=XXXX
-NODE_ENV=development
 PORT=3000
-PG_PASSWORD=xxxx
-PG_PORT=XXXX
-PG_HOST=localhost
-PG_DATABASE=XXXX
-JWT_SECRET=XXXX
-JWT_EXPIRES_IN=xd
-JWT_COOKIE_EXPIRES_IN=x
+NODE_ENV=development
+PG_PASSWORD=****
+PG_PORT=5432
+PG_HOST=postgres
+PG_USER=postgres
+PG_DATABASE=****
+JWT_SECRET=****
+JWT_EXPIRES_IN=*d
+JWT_COOKIE_EXPIRES_IN=*
 ```
 
-### Postman Documentation
-
-- Navigate to `http://localhost:8282/api-docs` on your computer to view the openapi documentation.
-
 ### Installation 📦
-
-#### Without Docker
 
 ```bash
    $ git clone https://github.com/sheygs/hux-assessment-backend.git
@@ -46,23 +40,15 @@ JWT_COOKIE_EXPIRES_IN=x
    $ yarn
 ```
 
-- Run `yarn` to install project dependencies
-- Run `yarn start:dev` to run the services and you are good
-- Open browser and visit `http://localhost:3000`
+#### Using Docker (Recommended)
 
-#### Using Docker
-
-- Install [Docker](https://www.docker.com/)
 - Run `docker-compose up -d`.
-- Open browser and visit `http://localhost:3000`
+- Open browser and visit `http://localhost:3001`
 
-### Production Packaging
+#### Without Docker
 
-- RUN `yarn start` to start the production build
-
-```
-docker build -t ${IMAGETAG} -f Dockerfile .
-```
+- Run `yarn start:dev` to run the service.
+- Open browser and visit `http://localhost:3001`
 
 ### Test
 
@@ -73,7 +59,7 @@ docker build -t ${IMAGETAG} -f Dockerfile .
 ### Postman Documentation
 
 - Please see `/postman_docs` directory on the root OR
-- Navigate to `http://localhost:3000/api-docs` on your computer to view the openapi documentation.
+- Navigate to `http://localhost:3001/api-docs` on your computer to view the openapi documentation.
 
 #### Improvement Points
 
