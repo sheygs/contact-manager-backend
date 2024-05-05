@@ -3,6 +3,12 @@ enum Status {
   FAILURE = 'failure',
 }
 
+export enum RequestPath {
+  BODY = 'body',
+  QUERY = 'query',
+  PARAMS = 'params',
+}
+
 type AppResponse = {
   name: string;
   version: string;
@@ -31,12 +37,6 @@ interface FailureResponse {
     message: string;
     stack?: string;
   };
-}
-
-export enum RequestPath {
-  BODY = 'body',
-  QUERY = 'query',
-  PARAMS = 'params',
 }
 
 export interface ObjectLiteral {

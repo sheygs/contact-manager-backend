@@ -1,4 +1,4 @@
-FROM node:20-alpine as build
+FROM node:20-alpine3.19 as build
 
 WORKDIR /app
 
@@ -14,7 +14,8 @@ COPY . .
 RUN yarn transpile
 
 
-FROM node:20-alpine
+FROM node:20-alpine3.19
+
 
 RUN apk add --no-cache curl
 

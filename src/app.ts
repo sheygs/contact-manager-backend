@@ -9,7 +9,6 @@ import swaggerUi from 'swagger-ui-express';
 import swaggerDocument from './swagger.json';
 import { connectDataSource } from './db';
 
-
 export const createApp = (): Application => {
   connectDataSource();
 
