@@ -17,7 +17,7 @@
 - [Postman](https://www.postman.com/downloads/)
 - [Git](https://git-scm.com/downloads)
 
-### Rename _.env.sample_ to _.env_ and populate keys
+### Rename`.env.dev` to `.env` and populate variables
 
 ```bash
 PORT=3000
@@ -40,14 +40,14 @@ JWT_COOKIE_EXPIRES_IN=*
    $ yarn
 ```
 
-#### Using Docker
+#### Using Docker (Recommended)
 
 - Run `docker-compose up -d`.
 - Open browser and visit `http://localhost:3001`
 
 #### Without Docker
 
-- Run `yarn start:dev` to run the services and you are good
+- Run `yarn start:dev` to run the service.
 - Open browser and visit `http://localhost:3001`
 
 ### Test
