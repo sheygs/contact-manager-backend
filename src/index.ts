@@ -1,8 +1,8 @@
 import { createApp } from './app';
 import { startServer } from './server';
-import { ENV } from './interfaces';
+import { Env } from './interfaces';
 
-if (process.env.NODE_ENV !== ENV.TEST) {
+if (process.env.NODE_ENV !== Env.TEST) {
   const app = createApp();
   startServer(app);
 }

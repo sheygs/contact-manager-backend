@@ -9,27 +9,15 @@ const {
 export class UtilService {
   private static readonly saltOrRounds = 10;
 
-  static async hashPassword(password: string) {
+  static async hashPassword(password: string): Promise<string> {
     return await bcrypt.hash(password, this.saltOrRounds);
   }
 
-  static async comparePassword(password: string, hash: string) {
+  static async comparePassword(password: string, hash: string): Promise<boolean> {
     return await bcrypt.compare(password, hash);
   }
 
-  static generateToken(userID: string): string {
-    return jwt.sign(
-      {
-        id: userID,
-      },
-      JWT_SECRET,
-      {
-        expiresIn: JWT_EXPIRES_IN,
-      },
-    );
-  }
-
-  static signJWT(userID: string, email: string, role: string) {
+  static signJWT(userID: string, email: string, role: string): string {
     return jwt.sign(
       {
         _id: userID,

@@ -6,16 +6,21 @@
   "scripts": {
     "start": "node ./build/src/index.js",
     "dev": "nodemon --watch \"./src/**/*.ts\" --exec \"ts-node\" ./src/index.ts",
-    "dev:local": "nodemon --exec \"yarn clean && yarn transpile && yarn start\" --watch src --ext ts",
+    "start:dev": "nodemon --exec \"yarn clean && yarn transpile && yarn start\" --watch src --ext ts",
     "clean": "rimraf build",
     "transpile": "tsc",
     "build:image": "docker build -t hux-api .",
     "run:image": "docker run -p 80:80 hux-api",
     "docker-compose": "docker-compose up -d postgres api",
+    "view:logs": "docker-compose logs",
     "prettify": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
     "test": "cross-env NODE_ENV=test jest --forceExit --detectOpenHandles",
     "test:watch": "cross-env NODE_ENV=test jest --runInBand --watch",
-    "test:cov": "cross-env NODE_ENV=test jest --coverage"
+    "test:cov": "cross-env NODE_ENV=test jest --coverage",
+    "typeorm": "ts-node ./node_modules/typeorm/cli",
+    "typeorm:create-migration": "yarn typeorm -- migration:create ./migrations/$npm_config_name",
+    "typeorm:run-migrations": "yarn typeorm migration:run -- -d ./src/db/data-source.ts",
+    "typeorm:revert-migrations": "yarn typeorm migration:revert -- -d ./src/db/data-source.ts"
   },
   "keywords": [
     "api",

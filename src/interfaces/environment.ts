@@ -1,7 +1,7 @@
-enum ENV {
+enum Env {
   PRODUCTION = 'production',
   TEST = 'test',
   DEVELOPMENT = 'development',
 }
 
-export { ENV };
+export { Env };

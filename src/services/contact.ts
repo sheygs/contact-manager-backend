@@ -1,4 +1,3 @@
-// import { BadRequestException, ConflictException, UtilService } from '../utils';
 import { NotFoundException, UnauthorizedException } from '../utils';
 import { Contact } from '../entities';
 import UniversalModel from '../model';
@@ -65,7 +64,10 @@ class ContactService {
         throw new UnauthorizedException("You can't edit other people's contacts");
       }
 
-      const updated = await new UniversalModel(Contact).update(existingContact.id, body);
+      const updated = await new UniversalModel(Contact).update(
+        existingContact.id,
+        body,
+      );
 
       return updated;
     } catch (error) {

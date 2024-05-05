@@ -17,7 +17,7 @@
 - [Postman](https://www.postman.com/downloads/)
 - [Git](https://git-scm.com/downloads)
 
-### Rename _.env.sample_ to _.env_ and populate the placeholders
+### Rename _.env.sample_ to _.env_ and populate keys
 
 ```bash
 PORT=XXXX
@@ -47,7 +47,7 @@ JWT_COOKIE_EXPIRES_IN=x
 ```
 
 - Run `yarn` to install project dependencies
-- Run `yarn dev:local` to run the services and you are good
+- Run `yarn start:dev` to run the services and you are good
 - Open browser and visit `http://localhost:3000`
 
 #### Using Docker
@@ -78,4 +78,4 @@ docker build -t ${IMAGETAG} -f Dockerfile .
 #### Improvement Points
 
 - Implement Caching for frequently accessed data
-- Implement pagination for large data sets
+- Implement Pagination for large data sets

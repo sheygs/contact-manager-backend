@@ -1,8 +1,8 @@
 import pkg from '../../package.json';
 import 'dotenv/config';
-import { ENV, Config } from '../interfaces';
+import { Env, Config } from '../interfaces';
 
-const { TEST, DEVELOPMENT } = ENV;
+const { TEST, DEVELOPMENT } = Env;
 
 export const config: Config = {
   APP: {

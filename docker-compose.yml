@@ -1,14 +1,17 @@
+version: '3.9'
+
 services:
   postgres:
     container_name: postgres-container
-    image: postgres
+    image: postgres:16.2
     restart: always
     environment:
       - POSTGRES_DB=hux
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres@admin
+    # localhost:container
     ports:
-      - '5432:5432'
+      - '5430:5432'
     volumes:
       - ./volumes/data:/data/db
   api:
@@ -17,8 +20,8 @@ services:
       context: .
       dockerfile: Dockerfile
     env_file: .env
+    # localhost:container
     ports:
-      - '3000:3000'
+      - '3001:3000'
     depends_on:
       - postgres
-

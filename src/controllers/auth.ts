@@ -21,7 +21,8 @@ class AuthController {
 
       res.cookie('jwt', response.token, {
         expires: new Date(
-          Date.now() + Number(config.APP.JWT_COOKIE_EXPIRES_IN) * 24 * 60 * 60 * 1000,
+          Date.now() +
+            Number(config.APP.JWT_COOKIE_EXPIRES_IN) * 24 * 60 * 60 * 1000,
         ),
         httpOnly: true,
         secure: req.secure || req.headers['x-forwarded-proto'] === 'https',

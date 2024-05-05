@@ -4,17 +4,25 @@ import { User } from '../entities';
 import UniversalModel from '../model';
 
 class AuthService {
-  static async register(request: { username: string; email: string; password: string }) {
+  static async register(request: {
+    username: string;
+    email: string;
+    password: string;
+  }): Promise<{
+    user: any;
+  }> {
     const { username, email, password } = request;
 
     try {
-      const existingUser = await new UniversalModel(User).findOne({ where: { email } });
+      const existingUser = await new UniversalModel(User).findOne({
+        where: { email },
+      });
 
       if (existingUser) {
-        throw new ConflictException('An account with this email already exists');
+        throw new ConflictException('Account with this email already exists');
       }
 
-      const hashed = await UtilService.hashPassword(password);
+      const hashed: string = await UtilService.hashPassword(password);
 
       const user = await new UniversalModel(User).insert({
         username,
@@ -29,7 +37,10 @@ class AuthService {
       throw error;
     }
   }
-  static async login(request: { email: string; password: string }) {
+  static async login(request: { email: string; password: string }): Promise<{
+    user: any;
+    token: string;
+  }> {
     const { email, password } = request;
 
     try {
@@ -41,7 +52,10 @@ class AuthService {
         throw new BadRequestException('Invalid email account');
       }
 
-      const isValidPassword = await UtilService.comparePassword(password, user.password);
+      const isValidPassword = await UtilService.comparePassword(
+        password,
+        user.password,
+      );
 
       if (!isValidPassword) {
         throw new BadRequestException('Invalid password credential');
@@ -56,7 +70,7 @@ class AuthService {
       throw error;
     }
   }
-  static async userLoggedIn(req: Request) {
+  static async userLoggedIn(req: Request): Promise<any> {
     try {
       const user = await new UniversalModel(User).findOne({
         where: { id: req.user },

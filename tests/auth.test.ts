@@ -59,7 +59,9 @@ describe('Sign up', () => {
 
 describe('User Login', () => {
   it('should log in with valid credentials', async () => {
-    const res = await request(app).post('/api/v1/auth/login').send({ email, password });
+    const res = await request(app)
+      .post('/api/v1/auth/login')
+      .send({ email, password });
 
     expect(res.body.code).toBe(200);
     expect(res.body.status).toBe('success');
@@ -67,7 +69,6 @@ describe('User Login', () => {
     expect(res.body.data).toBeDefined();
     jwt = res.body.data.token;
     expect(jwt).toBeDefined();
-    console.log(jwt);
   });
 
   it('should fail with invalid credentials', async () => {

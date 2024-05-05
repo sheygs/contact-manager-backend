@@ -1,6 +1,12 @@
-enum STATUS {
+enum Status {
   SUCCESS = 'success',
   FAILURE = 'failure',
+}
+
+export enum RequestPath {
+  BODY = 'body',
+  QUERY = 'query',
+  PARAMS = 'params',
 }
 
 type AppResponse = {
@@ -17,14 +23,14 @@ type AppResponse = {
 
 interface SuccessResponse<T> {
   code: number;
-  status: STATUS;
+  status: Status;
   message: string;
   data: T | {};
 }
 
 interface FailureResponse {
   code: number;
-  status: STATUS;
+  status: Status;
   error: {
     id: string;
     name: string;
@@ -33,19 +39,13 @@ interface FailureResponse {
   };
 }
 
-export enum RequestPath {
-  BODY = 'body',
-  QUERY = 'query',
-  PARAMS = 'params',
-}
-
 export interface ObjectLiteral {
   [props: string]: any;
 }
 
 type NotFoundError = {
   code: number;
-  status: STATUS;
+  status: Status;
   message: string;
   path: string;
 };
@@ -92,7 +92,7 @@ type IUserResponse = {
 };
 
 export {
-  STATUS,
+  Status,
   AppResponse,
   SuccessResponse,
   FailureResponse,

@@ -18,7 +18,7 @@ export const startServer = (app: express.Application): Server => {
     .on('beforeExit', () => exitLog(null, 'beforeExit'))
     .on('exit', () => exitLog(null, 'exit'));
 
-  return httpServer.listen(PORT, (): void => {
+  return httpServer.listen({ port: PORT }, (): void => {
     process.stdout.write(`⚙️ Env: ${ENV}\n`);
     process.stdout.write(`⏱ Started on: ${Date.now()}\n`);
     process.stdout.write(`🚀 hux-api server ready at http://localhost:${PORT}\n`);
