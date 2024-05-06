@@ -1,5 +1,5 @@
 import { DataSource } from 'typeorm';
-import { config } from '../config/env';
+import { config } from '../config';
 import { DataSourceOptions } from 'typeorm';
 
 const {
@@ -13,7 +13,6 @@ const dataSourceOptions: DataSourceOptions = {
   username: USER,
   password: PASSWORD,
   database: DATABASE,
-  // entities: [Contact, User],
   entities: ['build/entities/*.js'],
   logging: config.APP.ENV === 'development',
   synchronize: true,

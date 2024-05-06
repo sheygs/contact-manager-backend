@@ -9,7 +9,7 @@ import {
   UnauthorizedException,
 } from '../utils';
 
-const verifyAuthToken = async (req: Req, _: Res, next: Next) => {
+const verifyAuthToken = async (req: Req, _: Res, next: Next): Promise<void> => {
   const { authorization } = req.headers;
 
   const { error } = bearerTokenSchema.validate(req.headers);
