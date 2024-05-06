@@ -7,7 +7,7 @@
     "target": "ESNext",
     "useDefineForClassFields": true,
     "module": "NodeNext",
-    // "rootDir": "./",
+    "rootDir": "./src",
     "moduleResolution": "NodeNext",
     "baseUrl": "./",
     // "paths": {},
@@ -31,6 +31,6 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true
   },
-  "include": ["src/**/*", "./tests/**/*"],
-  "exclude": ["node_modules"]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "test"]
 }
