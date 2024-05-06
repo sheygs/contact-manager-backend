@@ -14,7 +14,7 @@ const dataSourceOptions: DataSourceOptions = {
   password: PASSWORD,
   database: DATABASE,
   // entities: [Contact, User],
-  entities: ['build/src/entities/*.js'],
+  entities: ['build/entities/*.js'],
   logging: config.APP.ENV === 'development',
   synchronize: true,
   migrations: ['migrations/**'],
