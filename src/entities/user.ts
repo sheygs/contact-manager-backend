@@ -7,7 +7,9 @@ import {
   PrimaryGeneratedColumn,
   OneToMany,
 } from 'typeorm';
+
 import { Contact } from './contact';
+import { Role } from '../interfaces';
 
 @Entity({ name: 'users' })
 class User extends BaseEntity {
@@ -43,7 +45,7 @@ class User extends BaseEntity {
     type: 'varchar',
     default: 'user',
   })
-  role!: 'user' | 'admin';
+  role!: Role;
 
   @CreateDateColumn({
     name: 'created_at',
