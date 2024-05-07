@@ -19,4 +19,6 @@ const dataSourceOptions: DataSourceOptions = {
   migrations: ['migrations/**'],
 };
 
-export const dataSource: DataSource = new DataSource(dataSourceOptions);
+const dataSource: DataSource = new DataSource(dataSourceOptions);
+
+export { dataSource };
