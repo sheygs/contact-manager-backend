@@ -15,8 +15,9 @@ const dataSourceOptions: DataSourceOptions = {
   database: DATABASE,
   entities: ['build/entities/*.js'],
   logging: config.APP.ENV === 'development',
-  synchronize: true,
+  synchronize: process.env.NODE_ENV !== 'production',
   migrations: ['migrations/**'],
+  ssl: process.env.NODE_ENV === 'production',
 };
 
 const dataSource: DataSource = new DataSource(dataSourceOptions);
