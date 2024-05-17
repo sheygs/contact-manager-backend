@@ -1,7 +1,7 @@
 services:
   postgres:
     container_name: postgres-container
-    image: postgres:16.2
+    image: postgres:latest
     restart: always
     env_file: .env
     # environment:
