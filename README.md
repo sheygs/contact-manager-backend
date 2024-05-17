@@ -35,8 +35,8 @@ JWT_COOKIE_EXPIRES_IN=*
 ### Installation 📦
 
 ```bash
-   $ git clone https://github.com/sheygs/hux-assessment-backend.git
-   $ cd hux-assessment-backend
+   $ git clone https://github.com/sheygs/contact-manager-backend.git
+   $ cd contact-manager-backend
    $ yarn
 ```
 
