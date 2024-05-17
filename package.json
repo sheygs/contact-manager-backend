@@ -1,5 +1,5 @@
 {
-  "name": "hux-assessment-backend",
+  "name": "contact-manager-backend",
   "version": "1.0.0",
   "description": "API service that allows users save contact information.",
   "main": "./build/index.js",
@@ -9,8 +9,8 @@
     "start:dev": "nodemon --exec \"yarn clean && yarn transpile && yarn start\" --watch src --ext ts",
     "clean": "rimraf build",
     "transpile": "tsc",
-    "build:image": "docker build -t hux-api .",
-    "run:image": "docker run -p 3001:3000 hux-api",
+    "build:image": "docker build -t contact-api .",
+    "run:image": "docker run -p 3001:3000 contact-api",
     "docker-compose": "docker-compose up -d postgres api",
     "view:logs": "docker-compose logs",
     "prettify": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
@@ -26,7 +26,7 @@
     "api",
     "hux"
   ],
-  "repository": "https://github.com/sheygs/hux-assessment-backend.git",
+  "repository": "https://github.com/sheygs/contact-manager-backend.git",
   "author": "Olusegun Ekoh (sheygs)",
   "license": "MIT",
   "dependencies": {
