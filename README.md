@@ -1,4 +1,4 @@
-## hux-assessment-backend
+## contact-manager-backend
 
 > API service that allows authenticated users to save contact information
 
