@@ -15,8 +15,11 @@ const dataSourceOptions: DataSourceOptions = {
   database: DATABASE,
   entities: ['build/entities/*.js'],
   logging: config.APP.ENV === 'development',
-  synchronize: true,
+  synchronize: process.env.NODE_ENV !== 'production',
   migrations: ['migrations/**'],
+  ssl: process.env.NODE_ENV === 'production',
 };
 
-export const dataSource: DataSource = new DataSource(dataSourceOptions);
+const dataSource: DataSource = new DataSource(dataSourceOptions);
+
+export { dataSource };

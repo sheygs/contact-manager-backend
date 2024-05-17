@@ -4,6 +4,8 @@ import { Env, Config } from '../interfaces';
 
 const { DEVELOPMENT } = Env;
 
+
+
 export const config: Config = {
   APP: {
     NAME: pkg.name,
@@ -20,10 +22,10 @@ export const config: Config = {
     JWT_COOKIE_EXPIRES_IN: process.env.JWT_COOKIE_EXPIRES_IN ?? '',
   },
   DB: {
-    USER: process.env.PG_USER ?? 'postgres',
-    PASSWORD: process.env.PG_PASSWORD ?? '',
-    PG_PORT: process.env.PG_PORT ?? 5432,
-    HOST: process.env.PG_HOST ?? 'localhost',
-    DATABASE: process.env.PG_DATABASE ?? '',
+    USER: process.env.POSTGRES_USER ?? 'postgres',
+    PASSWORD: process.env.POSTGRES_PASSWORD ?? '',
+    PG_PORT: process.env.POSTGRES_PORT ?? 5432,
+    HOST: process.env.POSTGRES_HOST ?? 'localhost',
+    DATABASE: process.env.POSTGRES_DB ?? '',
   },
 };
