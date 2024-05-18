@@ -23,7 +23,7 @@ export const startServer = (app: express.Application): Server => {
     process.stdout.write(`⚙️ Env: ${ENV}\n`);
     process.stdout.write(`⏱ Started on: ${Date.now()}\n`);
     process.stdout.write(
-      `🚀 hux-api server ready at http://${os.hostname()}:${PORT}\n`,
+      `🚀 contact-api server ready at http://${os.hostname()}:${PORT}\n`,
     );
   });
 };
