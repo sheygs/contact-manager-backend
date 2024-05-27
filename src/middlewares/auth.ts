@@ -15,7 +15,7 @@ const verifyAuthToken = async (req: Req, _: Res, next: Next): Promise<void> => {
   const { error } = bearerTokenSchema.validate(req.headers);
 
   if (error) {
-    throw new BadRequestException(error.details[0].message);
+    return next(new BadRequestException(error.details[0].message));
   }
 
   try {
@@ -45,7 +45,7 @@ const verifyAuthToken = async (req: Req, _: Res, next: Next): Promise<void> => {
 
     next();
   } catch (error) {
-    throw error;
+    next(error);
   }
 };
 
