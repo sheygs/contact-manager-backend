@@ -1,8 +1,8 @@
 import { Request as Req, Response as Res, NextFunction as Next } from 'express';
 import jwt from 'jsonwebtoken';
-import { User } from '../entities';
+import { User } from '../db/entities';
 import { config } from '../config';
-import UniversalModel from '../model';
+import { UniversalModel } from '../db';
 import {
   BadRequestException,
   bearerTokenSchema,

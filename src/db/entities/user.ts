@@ -9,7 +9,7 @@ import {
 } from 'typeorm';
 
 import { Contact } from './contact';
-import { Role } from '../interfaces';
+import { Role } from '../../types';
 
 @Entity({ name: 'users' })
 class User extends BaseEntity {

@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { ContactController } from '../controllers';
-import { RequestPath } from '../interfaces';
+import { RequestPath } from '../types';
 import { verifyAuthToken } from '../middlewares';
 import {
   contactIDSchema,

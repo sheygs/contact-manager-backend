@@ -3,6 +3,16 @@ enum Status {
   FAILURE = 'failure',
 }
 
+enum Role {
+  USER = 'user',
+  ADMIN = 'admin',
+}
+
+interface ObjectLiteral {
+  [props: string]: any;
+}
+
+
 export enum RequestPath {
   BODY = 'body',
   QUERY = 'query',
@@ -72,4 +82,6 @@ export {
   FailureResponse,
   NotFoundResponse,
   IUserResponse,
+  Role,
+  ObjectLiteral
 };

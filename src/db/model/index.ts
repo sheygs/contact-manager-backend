@@ -1,4 +1,4 @@
-import { ObjectLiteral } from '../interfaces';
+import { ObjectLiteral } from '../../types';
 import { FindManyOptions, FindOneOptions, Repository } from 'typeorm';
 
 class UniversalModel {
@@ -57,4 +57,4 @@ class UniversalModel {
   }
 }
 
-export default UniversalModel;
+export { UniversalModel };

@@ -1,9 +1,9 @@
-import { DataSource } from 'typeorm';
+import { DataSource, DataSourceOptions } from 'typeorm';
 import { config } from '../config';
-import { DataSourceOptions } from 'typeorm';
 
 const {
   DB: { HOST, PG_PORT, PASSWORD, USER, DATABASE },
+  APP: { ENV },
 } = config;
 
 const dataSourceOptions: DataSourceOptions = {
@@ -14,12 +14,9 @@ const dataSourceOptions: DataSourceOptions = {
   password: PASSWORD,
   database: DATABASE,
   entities: ['build/entities/*.js'],
-  logging: config.APP.ENV === 'development',
-  synchronize: process.env.NODE_ENV !== 'production',
+  logging: ENV === 'development',
+  synchronize: ENV !== 'production',
   migrations: ['migrations/**'],
-  ssl: process.env.NODE_ENV === 'production',
 };
 
-const dataSource: DataSource = new DataSource(dataSourceOptions);
-
-export { dataSource };
+export const dataSource = new DataSource(dataSourceOptions);

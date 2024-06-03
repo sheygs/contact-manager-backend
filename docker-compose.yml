@@ -1,26 +1,36 @@
 services:
+  redis:
+    container_name: redis
+    image: redis:alpine
+    restart: always
+    ports:
+      - '6379:6379'
+    volumes:
+      - ./volumes/cache:/data
+
   postgres:
-    container_name: postgres-container
+    container_name: postgres
     image: postgres:latest
     restart: always
     env_file: .env
-    # environment:
-    #   - POSTGRES_DB=${POSTGRES_DB}
-    #   - POSTGRES_USER=${POSTGRES_USER}
-    #   - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-    # localhost:container
+    # maps host:container
     ports:
       - '5430:5432'
     volumes:
       - ./volumes/data:/data/db
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U ${POSTGRES_USER}']
+      interval: 10s
+      timeout: 5s
+      retries: 5
   api:
-    container_name: api-container
+    container_name: api-service
     build:
       context: .
       dockerfile: Dockerfile
     env_file: .env
-    # localhost:container
     ports:
       - '3001:3000'
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
