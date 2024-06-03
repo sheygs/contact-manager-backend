@@ -6,7 +6,7 @@ import {
   Status,
   SuccessResponse,
   NotFoundResponse,
-} from '../interfaces';
+} from '../types';
 
 export const successResponse = <T = unknown>(
   res: Res,

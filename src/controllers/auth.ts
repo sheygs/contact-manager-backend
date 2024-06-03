@@ -3,7 +3,7 @@ import { successResponse } from '../utils';
 import { OK, CREATED } from 'http-status';
 import { AuthService } from '../services';
 import { config } from '../config';
-import { IUserResponse } from '../interfaces';
+import { IUserResponse } from '../types';
 
 class AuthController {
   static async register(req: Request, res: Response, next: NextFunction) {

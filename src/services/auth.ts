@@ -1,7 +1,6 @@
 import { Request } from 'express';
 import { BadRequestException, ConflictException, UtilService } from '../utils';
-import { User } from '../entities';
-import UniversalModel from '../model';
+import { User, UniversalModel } from '../db';
 
 class AuthService {
   static async register(request: {

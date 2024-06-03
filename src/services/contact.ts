@@ -1,6 +1,5 @@
 import { NotFoundException, UnauthorizedException } from '../utils';
-import { Contact } from '../entities';
-import UniversalModel from '../model';
+import { Contact, UniversalModel } from '../db';
 import { Request as Req } from 'express';
 
 class ContactService {

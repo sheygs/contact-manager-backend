@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { AuthController } from '../controllers';
 import { authSchema, signInSchema, validateRequest } from '../utils';
-import { RequestPath } from '../interfaces';
+import { RequestPath } from '../types';
 import { verifyAuthToken } from '../middlewares';
 
 const authRouter: Router = Router();

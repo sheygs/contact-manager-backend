@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import { ObjectSchema } from 'joi';
-import { ObjectLiteral, RequestPath } from '../../interfaces';
+import { ObjectLiteral, RequestPath } from '../../types';
 import { UnprocessableEntityException } from '../error';
 
 export const requestValidatorHandler = (schema: any, input: ObjectLiteral) => {
